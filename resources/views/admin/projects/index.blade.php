@@ -21,7 +21,7 @@
                 <th scope="col">Repo</th>
                 <th scope="col">Collaboratori</th>
                 <th scope="col">Data di Pubblicazione</th>
-                <th scope="col">Tipo</th>
+                <th scope="col">Tipologia</th>
                 <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -33,7 +33,7 @@
                     <td>{{$project->repo}}</td>
                     <td>{{$project->collaborators}}</td>
                     <td>{{$project->publishing_date}}</td>
-                    <td>{{$project->type}}</td>
+                    <td>{!! $project->getTypologyName()!!}</td>
                     <td>
                     <a href="{{ route('admin.projects.show', $project) }}">
                         <i class="fa-regular fa-eye"></i>

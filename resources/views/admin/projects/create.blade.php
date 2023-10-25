@@ -46,12 +46,18 @@
             @enderror
         </div>
         <div class="col-3">
-            <label for="type" class="form-label">Tipo</label>
-            <input type="text" name="type" id="type" class="form-control @error('type') is-invalid @enderror" value="{{old('type')}}">
-            {{-- <select name="type" id="type" class="form-select @error('type') is-invalid @enderror">
-                <option value="public" @if(old('type') == "public") selected @endif>Pubblica</option>
-                <option value="private" @if(old('type') == "private") selected @endif>Private</option>
-            </select> --}}
+            <label for="typology_id" class="form-label">Tipologia</label>
+            <select name="typology_id" id="typology_id" class="form-select @error('typology_id') is-invalid @enderror">
+                <option value="">Senza tipologia</option>
+                @foreach ($typologies as $typology)
+                    <option value="{{ $typology->id }}" @if (old('typology_id') == $typology->id) selected @endif>{{$typology->name }}</option>
+                @endforeach
+            </select>
+            @error('typology_id')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="col-3 mt-4">
             <button class="btn btn-success">Salva</button>

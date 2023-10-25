@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['tipology_id', 'title', 'repo', 'collaborators', 'publishing_date'];
+    protected $fillable = ['name', 'repo', 'collaborators', 'publishing_date', 'typology_id'];
 
     public function typology()
     {
-        return $this->belongsTo(typology::class);
+        return $this->belongsTo(Typology::class);
     }
 
     public function getTypologyName()
     {
-        return $this->typology ? "<span class='badge' style='background-color: {$this->typology->color}'>{$this->typology->name}</span>" : "Uncategorized";
+        return $this->typology ? "<span class='badge' style='background-color: {$this->typology->color}'>{$this->typology->name}</span>" : "";
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Typology;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $typologies = Typology::all();
+        return view('admin.projects.create', compact('typologies'));
     }
 
     /**
@@ -71,7 +73,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $typologies = Typology::all();
+        return view('admin.projects.edit', compact('project', 'typologies'));
     }
 
     /**
@@ -116,7 +119,8 @@ class ProjectController extends Controller
                 'repo' => 'required|url',
                 'collaborators' => 'required|integer',
                 'publishing_date' => 'required|date',
-                'type' => 'required|string',
+                'typology_id' => 'nullable|exists:typologies,id',
+
             ],
             [
                 'name.required' => 'Il nome è obbligatorio',
@@ -132,8 +136,7 @@ class ProjectController extends Controller
                 'publishing_date.required' => 'La data è obbligatoria',
                 'publishing_date.date' => 'Formato data errato',
 
-                'type.required' => 'Il tipo è obbligatorio',
-                'type.string' => 'Il tipo deve essere una stringa',
+                'typology_id.exists' => 'La tipologia inserita non è valida',
             ]
 
         )->validate();
