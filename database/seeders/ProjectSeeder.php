@@ -23,7 +23,6 @@ class ProjectSeeder extends Seeder
             $project->repo = $faker->url();
             $project->collaborators = $faker->randomDigit();
             $project->publishing_date = $faker->dateTime();
-            $project->type = $faker->word();
 
             $project->save();
         }

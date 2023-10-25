@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->text('repo');
             $table->tinyInteger('collaborators');
             $table->date('publishing_date');
-            $table->string('type');
             $table->timestamps();
         });
     }
