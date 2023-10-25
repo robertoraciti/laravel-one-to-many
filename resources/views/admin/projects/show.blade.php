@@ -35,8 +35,8 @@
                     {{ $project->collaborators}}
                 </div>
                 <div class="col-2">
-                    <strong>Tipo: </strong><br>
-                    {{ $project->type}}
+                    <strong>Tipologia: </strong><br>
+                    {!! $project->getTypologyName()!!}
                 </div>
             </div>
         </div>
