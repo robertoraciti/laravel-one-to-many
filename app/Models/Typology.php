@@ -14,4 +14,9 @@ class Typology extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    public function getTypologyName()
+    {
+        return $this->typology ? "<span class='badge' style='background-color: {$this->typology->color}'>{$this->typology->name}</span>" : "Uncategorized";
+    }
 }
